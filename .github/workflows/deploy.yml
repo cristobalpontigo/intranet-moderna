@@ -14,6 +14,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
+    # Especificar el environment para GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
     permissions:
       contents: read
       pages: write
@@ -39,8 +44,8 @@ jobs:
 
     - name: Copy built files to root
       run: |
-        cp -r out/* .
-        cp out/.nojekyll .
+        cp -r out/* ./
+        if [ -f out/.nojekyll ]; then cp out/.nojekyll ./; fi
         ls -la
 
     - name: Setup Pages
