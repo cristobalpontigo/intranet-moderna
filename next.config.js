@@ -9,20 +9,8 @@ const nextConfig = {
     unoptimized: true, // Requerido para exportación estática
     domains: ['localhost', '192.168.100.73'],
   },
-  // Permitir acceso desde otros hosts en la red
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: '*',
-          },
-        ],
-      },
-    ]
-  },
+  // Configuración limpia para GitHub Pages
+  distDir: 'out',
 }
 
 module.exports = nextConfig
