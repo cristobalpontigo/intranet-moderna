@@ -37,13 +37,19 @@ jobs:
       env:
         NODE_ENV: production
 
+    - name: Copy built files to root
+      run: |
+        cp -r out/* .
+        cp out/.nojekyll .
+        ls -la
+
     - name: Setup Pages
       uses: actions/configure-pages@v4
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./out
+        path: .
         name: github-pages-${{ github.run_id }}
 
     - name: Deploy to GitHub Pages
